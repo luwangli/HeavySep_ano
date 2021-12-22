@@ -50,3 +50,15 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# for this repo
+Analysis/
+*.csv
+ColdFilter2/
+HS/
+HS2/
+SpaceSaving/
+SpaceSaving2/
+Task_HC2/
+demo/
+data/2002.txt
