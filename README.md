@@ -3,7 +3,7 @@
 HeavySep enhance exiting sketches by filtering elephant flow efficiently and accuracy.
 We apply HeavySep to two typical sketches (HeavySep-CM and HeavySep-CU) on three common stream processing tasks 
 (Flow frequency, HeavyHitter and HeavyChange).
-##File
+## File
 - HS3/. the implementation of HeavySep-CM and HeavySep-CU
 - CMSketch/. the implementation of CM
 - CUSketch/. the implementation of CU
@@ -14,7 +14,7 @@ We apply HeavySep to two typical sketches (HeavySep-CM and HeavySep-CU) on three
 ## Requirement
 Ensure g++ and make are installed. Our experimental platform is equipped with Ubuntu 16, g++ 5.4 and make 4.1
 
-##Compile and Run
+## Compile and Run
 There are three stream processing task in this repo.
 ### Flow Frequency Task
 note in this task, we compare HeavySep-CM, HeavySep-CU, CM, CU, ColdFilter and ASketch.
