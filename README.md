@@ -1,14 +1,16 @@
 # HeavySep
 ## Intro
 HeavySep enhance exiting sketches by filtering elephant flow efficiently and accuracy.
-We apply HeavySep to two typical sketches (HeavySep-CM and HeavySep-CU) on three common stream processing tasks 
-(Flow frequency, HeavyHitter and HeavyChange).
+We apply HeavySep to two typical sketches (HS-CM and HS-CU) on two common stream processing tasks 
+(Flow frequency, and HeavyHitter ).
 ## File
 - HS3/. the implementation of HeavySep-CM and HeavySep-CU
 - CMSketch/. the implementation of CM
 - CUSketch/. the implementation of CU
-- ColdFilter/. the implementation of ColdFilter and ASketch.
+- ColdFilter/. the implementation of ColdFilter
 - HeavyGuard/. the implementation of HeavyGuard
+- ASketch/. the implementation of ASketch
+- elasticsketch/. the implementation of ElsaticSketch
 - data/. a test case.
 
 ## Requirement
@@ -17,22 +19,17 @@ Ensure g++ and make are installed. Our experimental platform is equipped with Ub
 ## Compile and Run
 There are three stream processing task in this repo.
 ### Flow Frequency Task
-note in this task, we compare HeavySep-CM, HeavySep-CU, CM, CU, ColdFilter and ASketch.
+note in this task, we compare HS-CM, HS-CU, CM, CU, ColdFilter and ASketch.
 ```
 $cd Task_FlowFrequency
 $make clean
 $make
 $./main,out
 ```
-Then input parameter according to the guideline. You will get the result of CM, CU, HeavySep-CU and HeavySep-CM.
+Then input parameter according to the guideline. You will get the result of CM, CU, HS-CU, HS-CM, ColdFilter,
+ASketch and ElasticSketch.
 
-If you want to get the result of ColdFilter and Asketch, do as follow:
-```markdown
-$cd ColdFilter
-$make clean
-$make
-$./main.out
-```
+
 ### HeavyHitter Task
 note in HeavyHitter Task, we compare CMHeap, CUHeap, HeavySep, HeavyGuardian, WavingSketch.
 

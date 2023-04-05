@@ -5,6 +5,7 @@
 #include "./CUHeap.h"
 #include "./CMHeap.h"
 #include "./wavingsketch.h"
+#include "./mvsketch.h"
 
 using namespace std;
 uint32_t insert_data[MAX_PACKET];
@@ -23,12 +24,14 @@ int main()
     map<uint32_t,int> cuh_thres,hg_thres,heavysep_thres,thres;
 
     int packet_num,total_memory,threshold;
-
-    char path[100];
-    cout<<"Input data (for example: ../data/trace.txt)"<<endl;
-    cin>>path;
+    char path[100] = "../data/trace.txt";
+   // char path[100];
+    cout<<"Input data ( ../data/trace.txt)"<<endl;
+   // cin>>path;
     cout<<"Input memory(KB) and threshold (for example: 20 500)"<<endl;
-    cin >>total_memory>>threshold;
+    //cin >>total_memory>>threshold;
+    total_memory = 20;
+    threshold = 500;
     packet_num = TraceRead(path, insert_data, benchmark_data);
 
    // HS *hs = new HS(total_memory*1024,1,1);
@@ -48,16 +51,21 @@ int main()
     HG->Print_basic_info();
 
     auto wavingsketch = new WavingSketch2(total_memory*1024);
+    wavingsketch->Print_basic_info();
 
     CUHeap *cuh = new CUHeap(total_memory*1024,400);
 
     CMHeap *cmh = new CMHeap(total_memory*1024,400);
 
+    //*add mvsketch
+    auto mvsketch = new MVSketch(total_memory*1024);
+    mvsketch->Print_basic_info();
+
     int report_val;
     ofstream outFile;
     outFile.open("result.csv",ios::app);
-    char const *AL[6]={"HeavySep","HeavyGuard","CUHeap","CMHeap","WavingSketch"};
-    for(int t =0;t<5;t++){
+    char const *AL[6]={"HeavySep","HeavyGuard","CUHeap","CMHeap","WavingSketch","MVSketch"};
+    for(int t =0;t<6;t++){
         ab_e = 0;
         re_e = 0;
         hh_ab_e = 0;
@@ -68,7 +76,8 @@ int main()
         f1 = 0;
         switch(t){
             case 0:{
-                cout<<"*******************HeavySep2 result: *************"<<t<<endl;
+                cout<<endl;
+                cout<<"*******************HeavySep result: *************"<<t<<endl;
                 clock_gettime(CLOCK_MONOTONIC, &start_time);
                 for(int i=0;i<packet_num;i++){
                     heavysep->Insert(insert_data[i]);}
@@ -110,6 +119,15 @@ int main()
                     wavingsketch->Insert(insert_data[i]);}
                 clock_gettime(CLOCK_MONOTONIC, &end_time);
                 thres = wavingsketch->Query_threshold(threshold);
+                break;
+            }
+            case 5:{
+                cout<<"**************MVSketch Result*************"<<t<<endl;
+                clock_gettime(CLOCK_MONOTONIC, &start_time);
+                for(int i=0;i<packet_num;i++){
+                    mvsketch->Insert(insert_data[i]);}
+                clock_gettime(CLOCK_MONOTONIC, &end_time);
+                thres = mvsketch->Query_threshold(threshold);
                 break;
             }
             default: cout<<"stop"<<endl;
