@@ -73,7 +73,7 @@ int main()
     //asketch->print_basic_info();
     #define HEAVY_MEM (30 * 1024)
     #define BUCKET_NUM (HEAVY_MEM / 64)
-    #define TOT_MEM_IN_BYTES (150 * 1024)
+    #define TOT_MEM_IN_BYTES (100 * 1024)
     auto elastic = new ElasticSketch<BUCKET_NUM, TOT_MEM_IN_BYTES>();
 
     int report_val;

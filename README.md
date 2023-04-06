@@ -21,7 +21,7 @@ There are three stream processing task in this repo.
 ### Flow Frequency Task
 note in this task, we compare HS-CM, HS-CU, CM, CU, ColdFilter and ASketch.
 ```
-$cd Task_FlowFrequency
+$cd Task_FlowFre
 $make clean
 $make
 $./main,out
@@ -40,15 +40,6 @@ $make
 $./main.out
 ```
 
-### HeavyChange Task
-In HeavyChange Task, we compare CMHeap, CUHeap, HeavySep, HeavyGuardian, WavingSketch.
-
-```markdown
-$cd Task_HeavyChange
-$make clean
-$make
-$./main.out
-```
 Note that you can change the configuration of HeavySep, e.g. number of rows and buckets in the example source code for testing.
 
 
